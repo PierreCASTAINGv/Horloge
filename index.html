@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>Horloge</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="cadran">
+        <p>12</p>
+        <p>3</p>
+        <p>6</p>
+        <p>9</p>
+        <div id="center"></div>
+        <div id="troteuse"></div>
+        <div id="heure"></div>
+        <div id="min"></div>
+    </div>
+   
+    <script>
+            // on récupère l'heure qu'il est :
+
+            var theDate = new Date();
+            var heur = theDate.getHours();
+            var mins = theDate.getMinutes();
+            var secs = theDate.getSeconds();
+
+            // tests => les 3 aiguilles sont initialisées sur 3H
+            
+            if (heur >= 12 && heur <= 15 || heur >= 0 && heur <= 3) {
+                degH = 270 + (heur * 30) + (mins * 0.5);
+                degH100 = degH + 360;
+            }
+            else {
+                degH = (heur - 3) * 30 + (mins * 0.5);
+                degH100 = degH + 360;
+            }
+            if (mins >= 0 && mins <= 15) {
+                degM = 270 + (mins * 6);
+                degM100 = degM + 360;
+            }
+            else {
+                degM = (mins - 15) * 6;
+                degM100 = degM + 360;
+            }
+            if (secs >= 0 && secs <= 15) {
+                degS = 270 + secs;
+                degS100 = degS + 360;
+            }
+            else {
+                degS = (secs - 15);
+                degS100 = degS + 360;
+            }
+
+            // création à la volée des @keyframes pour la rotaion des aiguilles : 
+            
+            var styleCreat = document.createElement("STYLE");
+            var keyInsert = "@keyframes turnT {0% {transform-origin:0% 50%;transform:rotate(" + degS + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degS100 + "deg);}}@keyframes turnM {0% {transform-origin:0% 50%;transform:rotate(" + degM + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degM100 + "deg);}}@keyframes turnH {0% {transform-origin:0% 50%;transform:rotate(" + degH + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degH100 +"deg);}}";
+            var textCreat = document.createTextNode(keyInsert);
+            styleCreat.appendChild(textCreat);
+            document.head.appendChild(styleCreat);
+            
+            // rappel visuel de l'heure qu'il est :
+
+            alert('Il est exactement : ' + heur + 'h ' + mins + 'min ' + secs + 's');
+
+            </script>
+            
+</body>
+
+</html>
