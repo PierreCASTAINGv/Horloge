@@ -29,7 +29,8 @@
             var mins = theDate.getMinutes();
             var secs = theDate.getSeconds();
 
-            // tests => les 3 aiguilles sont initialisées sur 3H
+            // tests => les 3 aiguilles sont initialisées sur 3H - 
+            // calcul des degrés pour placer les aiguilles à l'heure qu'il est :
             
             if (heur >= 12 && heur <= 15 || heur >= 0 && heur <= 3) {
                 degH = 270 + (heur * 30) + (mins * 0.5);
@@ -56,7 +57,7 @@
                 degS100 = degS + 360;
             }
 
-            // création à la volée des @keyframes pour la rotaion des aiguilles : 
+            // création à la volée des @keyframes pour placer les aiguilles à l'heure qu'il est : 
             
             var styleCreat = document.createElement("STYLE");
             var keyInsert = "@keyframes turnT {0% {transform-origin:0% 50%;transform:rotate(" + degS + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degS100 + "deg);}}@keyframes turnM {0% {transform-origin:0% 50%;transform:rotate(" + degM + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degM100 + "deg);}}@keyframes turnH {0% {transform-origin:0% 50%;transform:rotate(" + degH + "deg);}100% {transform-origin:0% 50%;transform:rotate(" + degH100 +"deg);}}";
